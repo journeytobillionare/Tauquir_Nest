@@ -1,5 +1,14 @@
-body {
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
   font-family: Arial, sans-serif;
 
   background-image: url("background.jpg");
@@ -14,45 +23,141 @@ body {
 /* HEADER */
 
 header {
-  background: rgba(37, 99, 235, 0.85);
+  background: rgba(37, 99, 235, 0.88);
+
   color: white;
+
   text-align: center;
+
   padding: 25px;
-  backdrop-filter: blur(6px);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+
+  backdrop-filter: blur(8px);
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* TOP BAR */
+
+.top-bar {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* HAMBURGER */
+
+.menu-btn {
+  position: absolute;
+  left: 0;
+
+  width: 52px;
+  height: 52px;
+
+  border-radius: 14px;
+
+  border: none;
+
+  background: white;
+  color: #2563eb;
+
+  font-size: 28px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+  transition: 0.3s ease;
+}
+
+.menu-btn:hover {
+  transform: scale(1.05);
+}
+
+/* MOBILE MENU */
+
+.mobile-menu {
+  display: none;
+
+  flex-direction: column;
+
+  gap: 12px;
+
+  margin-top: 20px;
+
+  animation: fadeIn 0.3s ease;
+}
+
+.mobile-menu.show {
+  display: flex;
+}
+
+.mobile-menu a {
+  text-decoration: none;
+
+  color: white;
+
+  background: rgba(255, 255, 255, 0.18);
+
+  padding: 14px;
+
+  border-radius: 12px;
+
+  font-weight: bold;
+
+  transition: 0.3s;
+}
+
+.mobile-menu a:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* PROFILE */
+
 .profile-photo {
-  width: 30vw;
-  max-width: 140px;
-  min-width: 90px;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
+  width: 130px;
+  height: 130px;
+
   object-fit: cover;
+
+  border-radius: 50%;
+
   border: 4px solid white;
-  margin-bottom: 10px;
+
+  margin-top: 18px;
+  margin-bottom: 12px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 header h1 {
-  margin: 10px 0 5px;
-  font-size: 2rem;
+  font-size: 2.2rem;
 }
 
 header p {
-  margin: 0;
-  font-size: 1rem;
   opacity: 0.9;
+  margin-top: 5px;
 }
 
-/* MAIN CONTAINER */
+/* CONTAINER */
 
 .container {
-  max-width: 1400px;
+  max-width: 1450px;
+
   margin: auto;
+
   padding: 25px;
 
   display: grid;
-  grid-template-columns: 25% 25% 50%;
+
+  grid-template-columns: 1fr 1fr 2fr;
+
   gap: 20px;
 
   align-items: start;
@@ -61,24 +166,33 @@ header p {
 /* CARDS */
 
 .card {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
+
   padding: 22px;
-  border-radius: 18px;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
 
-  backdrop-filter: blur(5px);
+  border-radius: 22px;
 
-  transition: transform 0.3s ease;
+  backdrop-filter: blur(8px);
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+
+  transition: 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
 }
 
 .card h2 {
-  margin-top: 0;
-  color: #1e3a8a;
   text-align: center;
+
+  color: #1e3a8a;
+
+  margin-bottom: 18px;
+}
+
+.blog-card {
+  background: rgba(255, 248, 235, 0.94);
 }
 
 /* INPUTS */
@@ -86,20 +200,23 @@ header p {
 input,
 textarea {
   width: 100%;
-  padding: 12px;
-  margin-top: 10px;
+
+  padding: 14px;
+
+  border-radius: 12px;
+
+  border: 1px solid #d1d5db;
+
   margin-bottom: 15px;
 
-  border-radius: 10px;
-  border: 1px solid #ccc;
-
-  box-sizing: border-box;
-
   font-size: 15px;
+
+  outline: none;
 }
 
 textarea {
-  height: 120px;
+  min-height: 130px;
+
   resize: vertical;
 }
 
@@ -107,18 +224,22 @@ textarea {
 
 button {
   width: 100%;
+
   background: #2563eb;
+
   color: white;
+
   border: none;
 
-  padding: 12px;
+  padding: 13px;
 
-  border-radius: 10px;
-
-  cursor: pointer;
+  border-radius: 12px;
 
   font-size: 15px;
+
   font-weight: bold;
+
+  cursor: pointer;
 
   transition: 0.3s;
 }
@@ -129,65 +250,42 @@ button:hover {
 
 /* POSTS */
 
-.post {
-  background: #eef2ff;
-  border-left: 5px solid #2563eb;
-
+.post,
+.vocab-item,
+.blog-post {
   margin-top: 18px;
-  padding: 15px;
 
-  border-radius: 12px;
+  padding: 18px;
+
+  border-radius: 15px;
 
   animation: fadeIn 0.4s ease;
 }
 
-/* VOCAB */
+.post {
+  background: #eef2ff;
+
+  border-left: 5px solid #2563eb;
+}
 
 .vocab-item {
   background: #ecfeff;
+
   border-left: 5px solid #06b6d4;
-
-  margin-top: 18px;
-  padding: 15px;
-
-  border-radius: 12px;
-
-  animation: fadeIn 0.4s ease;
-}
-
-/* BLOG */
-
-.blog-card {
-  background: rgba(255, 248, 235, 0.92);
 }
 
 .blog-post {
   background: #fff7ed;
+
   border-left: 5px solid orange;
-
-  margin-top: 18px;
-  padding: 15px;
-
-  border-radius: 12px;
-
-  animation: fadeIn 0.4s ease;
 }
-
-.blog-post button {
-  background: crimson;
-  margin-top: 10px;
-}
-
-.blog-post button:hover {
-  background: darkred;
-}
-
-/* SMALL TEXT */
 
 small {
-  color: gray;
   display: block;
+
   margin-top: 10px;
+
+  color: gray;
 }
 
 /* ANIMATION */
@@ -209,23 +307,23 @@ small {
 @media (max-width: 768px) {
   .container {
     grid-template-columns: 1fr;
+
     padding: 15px;
   }
 
-  header h1 {
-    font-size: 1.6rem;
-  }
-
-  .card {
-    padding: 18px;
-  }
-
-  button {
-    padding: 11px;
-  }
-
   .profile-photo {
-    width: 110px;
-    height: 110px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .top-bar h1 {
+    font-size: 1.5rem;
+  }
+
+  .menu-btn {
+    width: 48px;
+    height: 48px;
+
+    font-size: 24px;
   }
 }
