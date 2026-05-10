@@ -2,15 +2,33 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Tauquir's Nest</title>
+
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <header>
-      <img src="profile.jpeg" alt="Profile Photo" class="profile-photo" />
+      <div class="top-bar">
+        <button class="menu-btn" onclick="toggleMenu()">
+          ☰
+        </button>
 
-      <h1>Tauquir's Nest</h1>
+        <h1>Tauquir's Nest</h1>
+      </div>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#thoughts">Thoughts</a>
+
+        <a href="#vocab">Vocabulary</a>
+
+        <a href="#blogs-section">Blogs</a>
+      </div>
+
+      <img src="profile.jpeg" alt="Profile Photo" class="profile-photo" />
 
       <p>Thoughts • Vocabulary • Blogs</p>
     </header>
@@ -18,7 +36,7 @@
     <div class="container">
       <!-- THOUGHTS -->
 
-      <div class="card">
+      <div class="card" id="thoughts">
         <h2>Personal Thoughts</h2>
 
         <input type="text" id="postTitle" placeholder="Thought title" />
@@ -35,7 +53,7 @@
 
       <!-- VOCABULARY -->
 
-      <div class="card">
+      <div class="card" id="vocab">
         <h2>English Vocabulary</h2>
 
         <input type="text" id="word" placeholder="Word" />
@@ -49,7 +67,7 @@
 
       <!-- BLOG -->
 
-      <div class="card blog-card">
+      <div class="card blog-card" id="blogs-section">
         <h2>Write Blog</h2>
 
         <input type="text" id="blogTitle" placeholder="Blog title" />
