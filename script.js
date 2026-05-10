@@ -35,7 +35,7 @@ const db = getFirestore(app);
 
 const PASSWORD = "mypassword";
 
-/* DATE & TIME */
+/* DATE */
 
 function getCurrentDateTime() {
   return new Date().toLocaleString();
@@ -48,13 +48,14 @@ function checkPassword() {
 
   if (enteredPassword !== PASSWORD) {
     alert("Wrong password");
+
     return false;
   }
 
   return true;
 }
 
-/* DELETE ITEM */
+/* DELETE */
 
 async function deleteItem(collectionName, id) {
   if (!checkPassword()) return;
@@ -73,6 +74,7 @@ window.addPost = async function () {
 
   if (title === "" || content === "") {
     alert("Please fill all fields");
+
     return;
   }
 
@@ -98,6 +100,7 @@ window.addVocabulary = async function () {
 
   if (word === "" || meaning === "") {
     alert("Please fill all fields");
+
     return;
   }
 
@@ -123,6 +126,7 @@ window.addBlog = async function () {
 
   if (title === "" || content === "") {
     alert("Please fill all fields");
+
     return;
   }
 
@@ -147,25 +151,15 @@ onSnapshot(collection(db, "thoughts"), (snapshot) => {
   snapshot.forEach((docItem) => {
     const data = docItem.data();
 
-    const post = document.createElement("div");
+    postsDiv.innerHTML += `
+      <div class="post">
+        <h3>${data.title}</h3>
 
-    post.className = "post";
+        <p>${data.content}</p>
 
-    post.innerHTML = `
-      <h3>${data.title}</h3>
-
-      <p>${data.content}</p>
-
-      <small>Posted on: ${data.dateTime}</small>
-
-      <br><br>
-
-      <button onclick="deleteItem('thoughts', '${docItem.id}')">
-        Delete
-      </button>
+        <small>${data.dateTime}</small>
+      </div>
     `;
-
-    postsDiv.prepend(post);
   });
 });
 
@@ -179,25 +173,15 @@ onSnapshot(collection(db, "vocabulary"), (snapshot) => {
   snapshot.forEach((docItem) => {
     const data = docItem.data();
 
-    const vocab = document.createElement("div");
+    vocabDiv.innerHTML += `
+      <div class="vocab-item">
+        <h3>${data.word}</h3>
 
-    vocab.className = "vocab-item";
+        <p>${data.meaning}</p>
 
-    vocab.innerHTML = `
-      <h3>${data.word}</h3>
-
-      <p>${data.meaning}</p>
-
-      <small>Added on: ${data.dateTime}</small>
-
-      <br><br>
-
-      <button onclick="deleteItem('vocabulary', '${docItem.id}')">
-        Delete
-      </button>
+        <small>${data.dateTime}</small>
+      </div>
     `;
-
-    vocabDiv.prepend(vocab);
   });
 });
 
@@ -211,51 +195,24 @@ onSnapshot(collection(db, "blogs"), (snapshot) => {
   snapshot.forEach((docItem) => {
     const data = docItem.data();
 
-    const blog = document.createElement("div");
+    blogsDiv.innerHTML += `
+      <div class="blog-post">
+        <h3>${data.title}</h3>
 
-    blog.className = "blog-post";
+        <p>${data.content}</p>
 
-    blog.innerHTML = `
-      <h3>${data.title}</h3>
-
-      <p>${data.content}</p>
-
-      <small>Published on: ${data.dateTime}</small>
-
-      <br><br>
-
-      <button onclick="shareBlog('${data.title}', '${data.content}')">
-        Share Blog
-      </button>
-
-      <br><br>
-
-      <button onclick="deleteItem('blogs', '${docItem.id}')">
-        Delete Blog
-      </button>
+        <small>${data.dateTime}</small>
+      </div>
     `;
-
-    blogsDiv.prepend(blog);
   });
 });
 
-/* SHARE BLOG */
+/* HAMBURGER */
 
-window.shareBlog = function (title, content) {
-  const text = `${title}\n\n${content}`;
+window.toggleMenu = function () {
+  const menu = document.getElementById("mobileMenu");
 
-  if (navigator.share) {
-    navigator.share({
-      title: title,
-      text: content,
-    });
-  } else {
-    navigator.clipboard.writeText(text);
-
-    alert("Blog copied to clipboard");
-  }
+  menu.classList.toggle("show");
 };
-
-/* MAKE DELETE GLOBAL */
 
 window.deleteItem = deleteItem;
