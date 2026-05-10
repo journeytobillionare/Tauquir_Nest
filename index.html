@@ -11,6 +11,8 @@
   </head>
 
   <body>
+    <!-- HEADER -->
+
     <header>
       <div class="top-bar">
         <button class="menu-btn" onclick="toggleMenu()">
@@ -20,18 +22,36 @@
         <h1>Tauquir's Nest</h1>
       </div>
 
+      <!-- HAMBURGER MENU -->
+
       <div class="mobile-menu" id="mobileMenu">
-        <a href="#thoughts">Thoughts</a>
+        <a href="#thoughts">🧠 Thoughts</a>
 
-        <a href="#vocab">Vocabulary</a>
+        <a href="#vocab">📘 Vocabulary</a>
 
-        <a href="#blogs-section">Blogs</a>
+        <a href="#blogs-section">✍️ Blogs</a>
+
+        <a href="https://github.com/" target="_blank">
+          💻 GitHub
+        </a>
+
+        <a href="https://linkedin.com/" target="_blank">
+          🔗 LinkedIn
+        </a>
+
+        <a href="mailto:yourmail@gmail.com">
+          📩 Contact
+        </a>
       </div>
+
+      <!-- PROFILE -->
 
       <img src="profile.jpeg" alt="Profile Photo" class="profile-photo" />
 
       <p>Thoughts • Vocabulary • Blogs</p>
     </header>
+
+    <!-- MAIN CONTAINER -->
 
     <div class="container">
       <!-- THOUGHTS -->
@@ -65,20 +85,25 @@
         <div id="vocabulary"></div>
       </div>
 
-      <!-- BLOG -->
+      <!-- BLOGS -->
 
       <div class="card blog-card" id="blogs-section">
         <h2>Write Blog</h2>
 
         <input type="text" id="blogTitle" placeholder="Blog title" />
 
-        <textarea id="blogContent" placeholder="Write your blog..."></textarea>
+        <textarea
+          id="blogContent"
+          placeholder="Write your blog..."
+        ></textarea>
 
         <button onclick="addBlog()">Publish Blog</button>
 
         <div id="blogs"></div>
       </div>
     </div>
+
+    <!-- SCRIPT -->
 
     <script type="module" src="script.js"></script>
   </body>
